@@ -28,7 +28,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:3000"], // React dev server
+    origin: "http://localhost:3000", // React dev server
     credentials: true,
   })
 );
@@ -60,6 +60,7 @@ app.get("/api/v1", (req, res) => {
 // -------------------------
 // Serve React Frontend Build
 // -------------------------
+// Serve static frontend files
 app.use(express.static(path.join(__dirname, "build")));
 
 app.get("*", (req, res) => {
