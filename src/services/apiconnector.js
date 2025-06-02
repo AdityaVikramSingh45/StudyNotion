@@ -1,16 +1,16 @@
 import axios from "axios";
 
-export const axiosInstance = axios.create();
+export const axiosInstance = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL, // Loaded dynamically per environment
+  withCredentials: true,
+});
 
-export const apiConnector = (method, url, bodyData, headers, params) => {
-    // Replace HTTPS with HTTP only for localhost
-    const fixedUrl = url.startsWith("https://localhost") ? url.replace("https://", "http://") : url;
-
-    return axiosInstance({
-        method,  // No need for string interpolation
-        url: fixedUrl,
-        data: bodyData || undefined, // Cleaner null handling
-        headers: headers || undefined,
-        params: params || undefined,
-    });
+export const apiConnector = (method, url, bodyData = null, headers = {}, params = {}) => {
+  return axiosInstance({
+    method,
+    url,  // just the endpoint path, e.g. '/auth/login'
+    data: bodyData,
+    headers,
+    params,
+  });
 };
