@@ -26,35 +26,38 @@ dbConnect();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-const allowedOrigins = [
-  "https://study-notion-riz.vercel.app",
-  "http://localhost:3000"
-];
 
-app.use(cors({
-  origin: function(origin, callback) {
-    // allow requests with no origin (like curl or postman)
-    if (!origin) return callback(null, true);
+// const allowedOrigins = [
+//   "https://study-notion-riz.vercel.app",
+//   "http://localhost:3000"
+// ];
 
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
+// app.use(cors({
+//   origin: function(origin, callback) {
+//     // allow requests with no origin (like curl or postman)
+//     if (!origin) return callback(null, true);
 
-    return callback(null, true);
-  },
-  credentials: true, // <== allow cookies and credentials
-}));
-// app.use(
-//   cors({
-//     origin: [
-//       "http://localhost:3000", // for local frontend
-//       "https://study-notion-rizzzz.vercel.app", // for deployed frontend
-//     ],
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
+//     if (allowedOrigins.indexOf(origin) === -1) {
+//       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+//       return callback(new Error(msg), false);
+//     }
+
+//     return callback(null, true);
+//   },
+//   credentials: true, // <== allow cookies and credentials
+// }));
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000", // for local frontend
+      "https://study-notion-riz.vercel.app/", // for deployed frontend
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 app.use(
   fileUpload({
     useTempFiles: true,
