@@ -28,7 +28,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://your-frontend-domain.com"],
+    origin: [
+      "http://localhost:3000", // for local frontend
+      "https://study-notion-nine-puce.vercel.app", // for deployed frontend
+    ],
     credentials: true,
   })
 );
