@@ -51,7 +51,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000", // for local frontend
-      "https://study-notion-riz.vercel.app/", // for deployed frontend
+      "https://study-notion-riz.vercel.app", // for deployed frontend
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
