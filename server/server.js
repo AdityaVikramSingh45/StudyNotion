@@ -28,7 +28,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:3000", // React dev server
+    origin: ["http://localhost:3000", "https://your-frontend-domain.com"],
     credentials: true,
   })
 );
